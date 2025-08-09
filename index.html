@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raksha Bandhan Login</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+    .container {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        width: 350px;
+    }
+    h2 {
+        color: #ff4081;
+    }
+    input {
+        width: 90%;
+        padding: 10px;
+        margin: 8px 0;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+    }
+    button {
+        padding: 10px 20px;
+        background: #ff4081;
+        border: none;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    button:hover {
+        background: #e73370;
+    }
+    .floating {
+        position: absolute;
+        font-size: 2rem;
+        animation: float 6s linear infinite;
+    }
+    @keyframes float {
+        0% { transform: translateY(100vh); }
+        100% { transform: translateY(-10vh); }
+    }
+</style>
+</head>
+<body>
+
+<!-- Floating emojis -->
+<div class="floating" style="left:10%;">🎁</div>
+<div class="floating" style="left:30%;">💖</div>
+<div class="floating" style="left:50%;">🪢</div>
+<div class="floating" style="left:70%;">🎉</div>
+<div class="floating" style="left:90%;">🥰</div>
+
+<div class="container">
+    <h2>Raksha Bandhan Special 💝</h2>
+    <p>Secret code question: <b>What do I spend most of my time on?</b></p>
+    <input type="text" id="secretCode" placeholder="Enter secret code...">
+    <p>Enter your name:</p>
+    <input type="text" id="sisterName" placeholder="Your name...">
+    <button onclick="checkLogin()">Login</button>
+    <p id="message" style="color:red; font-weight:bold;"></p>
+</div>
+
+<script>
+    const validCodes = ["pc", "computer", "gaming", "laptop", "playstation", "ps4", "ps5"];
+    const validSisters = [
+        "harshita", "saumya", "runjun", "rushali", "pihu", 
+        "suhana", "krishna", "yashu", "yashika", "purti", "sona", "diksha"
+    ];
+    const specialSisters = ["harshita", "saumya", "runjun"]; // Special teasing list
+
+    function checkLogin() {
+        const codeInput = document.getElementById("secretCode").value.trim().toLowerCase();
+        const sisterInput = document.getElementById("sisterName").value.trim().toLowerCase();
+        const msg = document.getElementById("message");
+
+        if (validCodes.includes(codeInput) && validSisters.includes(sisterInput)) {
+            msg.style.color = "green";
+            msg.textContent = "✅ Access Granted! Happy Raksha Bandhan 🎉";
+            setTimeout(() => {
+                window.location.href = "main.html"; 
+            }, 1500);
+        } 
+        else if (validCodes.includes(codeInput) && !validSisters.includes(sisterInput)) {
+            if (specialSisters.includes(sisterInput)) {
+                msg.style.color = "orange";
+                msg.textContent = "😏 Arre meri special behen ka naam bhi bhool gaya?";
+            } else {
+                msg.style.color = "red";
+                msg.textContent = "❌ Access Denied! Only for special sisters 💕";
+            }
+        } 
+        else {
+            msg.style.color = "red";
+            msg.textContent = "❌ Wrong! Hint: it has a keyboard ⌨️";
+        }
+    }
+</script>
+
+</body>
+</html>
